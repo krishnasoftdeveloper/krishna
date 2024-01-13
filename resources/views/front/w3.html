@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Accordion and Dropdown</title>
+    <style>
+        .sidebar {
+            width: 160px;
+            background-color: #f1f1f1;
+            padding-top: 20px;
+        }
+
+        .accordion,
+        .accordion-inner,
+        .dropdown-btn {
+            width: 100%;
+            padding: 8px 16px;
+            text-align: left;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            transition: 0.4s;
+        }
+
+        .panel,
+        .panel-inner,
+        .dropdown-content {
+            display: none;
+            padding-left: 16px;
+        }
+
+        .sidebar-item {
+            padding: 8px 16px;
+            text-decoration: none;
+            font-size: 16px;
+            color: black;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar-item:hover {
+            background-color: #ddd;
+        }
+
+        .w3-green {
+            background-color: green;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <button class="accordion" onclick="toggleAccordion('demoAcc', this)">
+            Accordion <i class="fa fa-caret-down"></i>
+        </button>
+        <div id="demoAcc" class="panel">
+            <button class="accordion-inner" onclick="toggleAccordion('demoInnerAcc', this)">
+                Akash <i class="fa fa-caret-down"></i>
+            </button>
+            <div id="demoInnerAcc" class="panel-inner">
+                <a href="#" class="sidebar-item">Inner Link 1</a>
+                <a href="#" class="sidebar-item">Inner Link 2</a>
+            </div>
+            <a href="#" class="sidebar-item">Link</a>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropdown-btn" onclick="toggleDropdown('demoDrop', this)">
+                Dropdown <i class="fa fa-caret-down"></i>
+            </button>
+            <div id="demoDrop" class="dropdown-content">
+                <a href="#" class="sidebar-item">Link</a>
+                <a href="#" class="sidebar-item">Link</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleAccordion(id, button) {
+            var panel = document.getElementById(id);
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+                button.classList.remove("w3-green");
+            } else {
+                panel.style.display = "block";
+                button.classList.add("w3-green");
+            }
+        }
+
+        function toggleDropdown(id, button) {
+            var dropdown = document.getElementById(id);
+            if (dropdown.style.display === "block") {
+                dropdown.style.display = "none";
+                button.classList.remove("w3-green");
+            } else {
+                dropdown.style.display = "block";
+                button.classList.add("w3-green");
+            }
+        }
+
+    </script>
+</body>
+
+</html>
