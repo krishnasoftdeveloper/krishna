@@ -38,17 +38,33 @@ Route::group(['middleware' => 'admin_auth'], function () {
 Route::get('/front-home', [FrontController::class, 'frontHome']);
 Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/dashboard', [AuthController::class, 'dashboard']);
+
 Route::get('/my_profile', [ProfileController::class, 'my_profile']);
 
 
-
+Route::post('/save_user_account', [UserController::class, 'save_user_account']);
 Route::get('/manage_user_account', [UserController::class, 'manage_user_account']);
 Route::get('/view-booking-history', [UserController::class, 'view_booking_history']);
+Route::get('/manage_user_delete/{id}', [UserController::class, 'manage_user_delete']);
+
+
+
 Route::get('/manage_staff', [StaffController::class, 'manage_staff']);
+Route::post('/save_staff', [StaffController::class, 'save_staff']);
+Route::get('/deletestaff/{id}', [StaffController::class, 'deletestaff']);
+Route::get('/editstaff/{id}', [StaffController::class, 'editstaff']);
+Route::put('/updatestaff/{id}', [StaffController::class, 'updatestaff']);
+Route::post('update_staff', [StaffController::class, 'update_staff'])->name('update_staff');
+
+
+
+
 Route::get('/manage_roll', [StaffController::class, 'manage_roll']);
 
 
 Route::get('/manage_booking', [BookingController::class, 'manage_booking']);
+Route::post('/savebooking', [BookingController::class, 'save_booking']);
+Route::get('/deletebooking/{id}', [BookingController::class, 'deletebooking']);
 Route::get('/cancel_or_modify', [BookingController::class, 'cancel_or_modify']);
 
 
@@ -59,6 +75,8 @@ Route::get('/seat_availability_spacific', [RouteController::class, 'seat_availab
 
 
 Route::get('/setTicketPrices', [FareController::class, 'setTicketPrices']);
+Route::post('/savesetTicketPrices', [FareController::class, 'savesetTicketPrices']);
+
 Route::get('/ApplyDiscountorOffers', [FareController::class, 'ApplyDiscountorOffers']);
 Route::get('/ManageFareCategories', [FareController::class, 'ManageFareCategories']);
 

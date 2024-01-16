@@ -1,7 +1,5 @@
 @extends('layouts.master')
-
- 
- @section('content')
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -274,10 +272,15 @@
 
 <!-- ======= Sidebar ======= -->
 
+
+
 <!-- End Sidebar-->
 
   <main id="main" class="main">
-
+  <?php
+  if(isset($success))
+  echo "Inseted successfully";
+  ?>
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-6 col-md-6 my-3">
@@ -287,40 +290,6 @@
       </div>
     </div>
 
-     <!-- search bar start -->
-     <div class="row mt-3 mb-3">
-      <div class="col-md-8 col-sm-12 d-flex mt-2">
-        <label for="" class="px-1 ">Show</label>
-        <select name="" id="" style="font-size: small; height: 4vh;">
-          <option value="">10</option>
-          <option value="">25</option>
-          <option value="">50</option>
-          <option value="">100</option>
-
-        </select>
-
-        <label for="" class="px-1 ">Entries </label>
-        <div class=" col-sm-12 d-flex">
-          <button class="btn btn-primary col-sm-12  Btn_Save mx-1 " type="button"
-            style="height: 5vh;">Excel</button>
-        </div>
-      </div>
-
-
-
-
-      <div class="col-md-4 col-sm-12 mt-2">
-        <label for="" class="px-1 ">Search by</label>
-        <select name="" id="" style="font-size: small; height: 4vh;">
-          <option value="">Name</option>
-          <option value="">Email Id</option>
-          <option value="">Phone Number</option>
-
-        </select>
-      </div>
-
-    </div>
-    <!-- search bar end -->
 
     <!-- AddUser -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -338,7 +307,15 @@
           <div class="modal-body">
             <div class="container-fluid c1 py-3 ">
 
-
+            <form action="{{url('/save_user_account')}}" method="post" enctype="multipart/form-data">
+                                @if(Session::has('success'))
+                                              <div class="alert alert-danger">{{ Session::get('success') }}</div>
+                                              @endif
+                                              @if(Session::has('fail'))
+                                              <div class="alert alert-danger">{{ Session::get('fail') }}</div>
+                                              @endif
+            @csrf
+            
 
               <div class="row">
 
@@ -359,7 +336,7 @@
                                             font-weight: 600;">
                           Browse
                         </label>
-                        <input class="" id="formFileLg" type="file" style="display: none;">
+                        <input class="" id="formFileLg" name="image" type="file" style="display: none;">
                       </div>
 
 
@@ -367,34 +344,38 @@
                   </div>
                 </div>
 
-                <div class="col-sm-12 col-md-8 mt-3">
+<div class="col-sm-12 col-md-8 mt-3">
                   <div class="row">
                     <div class="col-sm-12 col-md-6" style="line-height: 2rem;  ">
                       <label class="" for="specificSizeSelect"> First Name :</label><br>
-                      <input type="text" class="form-control c2" id="" placeholder="  Enter First Name">
+                      @error('name')
+                      {{messages}}
+                      @enderror
+
+                      <input type="text" class="form-control c2" id="" name="name"  placeholder="  Enter First Name">
                     </div>
 
                     <div class="col-sm-12 col-md-6" style="line-height: 2rem;  ">
                       <label class="" for="specificSizeSelect"> Last Name :</label><br>
-                      <input type="text" class="form-control c2" id="" placeholder=" Enter Last Name">
+                      <input type="text" class="form-control c2" name="last_name"  id="" placeholder=" Enter Last Name">
                     </div>
 
 
                     <div class=" col-sm-12 col-md-6" style="line-height: 2rem;  ">
 
                       <label class="" for="specificSizeSelect">Email:</label>
-                      <input type="text" class="form-control c2" id="" placeholder=" Enter Email">
+                      <input type="text" class="form-control c2" id=""  name="email"  placeholder=" Enter Email">
                     </div>
 
 
                     <div class="col-sm-12 col-md-6" style="line-height: 2rem;  ">
                       <label class="" for="specificSizeSelect">Confirm Password :</label><br>
-                      <input type="password" class="form-control c2" id="" placeholder=" Password">
+                      <input type="password" class="form-control c2" id="" name="password"  placeholder=" Password">
                     </div>
 
                     <div class=" col-sm-12 col-md-6 " style="line-height: 2rem;  ">
                       <label class="" for="specificSizeSelect">Roll:</label>
-                      <select class="form-select c2" id="specificSizeSelect" style="width: 230px;">
+                      <select class="form-select c2" id="specificSizeSelect" name="roll"  style="width: 230px;">
                         <option selected>Roll</option>
                         <option value="1">Admin</option>
                         <option value="2">Customer Support</option>
@@ -404,23 +385,23 @@
 
                     <div class="col-sm-12 col-md-6" style="line-height: 2rem;  ">
                       <label class="" for="specificSizeSelect">Contact Number :</label><br>
-                      <input type="text" class="form-control c2" id="" placeholder=" Enter Contact">
+                      <input type="text" class="form-control c2" id="" name="contact_number"  placeholder=" Enter Contact">
                     </div>
 
                     <div class="col-sm-12 col-md-6" style="line-height: 2rem;  ">
                       <label class="" for="specificSizeSelect"> City :</label><br>
-                      <input type="text" class="form-control c2" id="" placeholder=" Last Name">
+                      <input type="text" class="form-control c2" id="" name="city"  placeholder=" Last Name">
                     </div>
 
 
                     <div class="col-sm-12 col-md-6" style="line-height: 2rem;  ">
                       <label class="" for="specificSizeSelect"> State:</label><br>
-                      <input type="text" class="form-control c2" id="" placeholder=" Enter Email">
+                      <input type="text" class="form-control c2" name="state"  id="" placeholder=" Enter Email">
                     </div>
                     <div class=" col-sm-12 col-md-12" style="line-height: 2rem;  ">
                       <label class="" for="specificSizeSelect"> Address:</label><br>
                       <div class="form-floating">
-                        <textarea class="form-control c2" placeholder="Leave a comment here"
+                        <textarea class="form-control c2"  name="address" placeholder="Leave a comment here"
                           id="floatingTextarea"></textarea>
                         <label for="floatingTextarea" class="">Address</label>
                       </div>
@@ -442,7 +423,7 @@
             </div>
             <hr>
             <div class=" float-end d-flex  ">
-              <button class="btn-primary Btn_Save mx-2">
+              <button class="btn-primary Btn_Save mx-2" type="submit">
                 Save
               </button>
 
@@ -455,6 +436,8 @@
 
 
       </div>
+</form>
+
     </div>
     <!-- AddUser -->
 
@@ -597,6 +580,12 @@
 
 
     <div class="container-fluid c1 my-4 py-2  " style="margin-top: 15px !important">
+    @if(Session::has('danger'))
+                                              <div class="alert alert-danger">{{ Session::get('danger') }}</div>
+                                              @endif
+                                              @if(Session::has('fail'))
+                                              <div class="alert alert-danger">{{ Session::get('fail') }}</div>
+                                              @endif
       <div style="overflow: auto;">
         <table class="table table-hover  ">
           <thead style="white-space: nowrap;">
@@ -607,19 +596,21 @@
             <th scope="col">Phone No.</th>
 
             <th scope="col">Joining Date</th>
-            <th scope="col">Status</th>
+            <th scope="col">Action</th>
 
-            <th scope="col" style="padding-left: 3rem;">Action</th>
+            <th scope="col" style="padding-left: 3rem;">ACTION</th>
             </tr>
           </thead>
           <tbody style="white-space: nowrap;">
+          
+          @foreach($manage_user_fetch as $u)
             <tr>
 
               <th> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th>
-              <td><span class=" ">JAKE</span></td>
-              <td><span class=" text-center">Cutomer Support</span></td>
-              <td><span class=" text-center">04644554678</span></td>
-              <td><span class=" text-center">02-08-2022</span></td>
+              <td><span class=" "></span>{{$u->name}}</td>
+              <td><span class=" text-center">{{$u->email}}</span></td>
+              <td><span class=" text-center">{{$u->phone_no}}</span></td>
+              <td><span class=" text-center">{{$u->created_at}}</span></td>
               <td><span class=" text-center">Pending</span></td>
 
 
@@ -631,9 +622,13 @@
                     data-bs-toggle="modal" data-bs-target="#exampleModal2" type="button">
                     <i class="ri-pencil-line"></i>
                   </div>
+                  <a href="{{url('/manage_user_delete/')}}/{{$u->id}}">
                   <div style="cursor: pointer;" class="delete_icon" aria-label="Example icon button with a menu icon">
-                    <i class="ri-delete-bin-6-line "></i>
-                  </div>
+
+  <i class="ri-delete-bin-6-line "></i>
+</div>
+                  </a>
+                 
                   <div style="cursor: pointer;" class="print_icon" aria-label="Example icon button with a menu icon">
                     <i class="ri-printer-fill"></i>
                   </div>
@@ -641,64 +636,9 @@
                 </div>
               </td>
             </tr>
-
-            <tr>
-
-              <th> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th>
-              <td><span class=" ">JAKE</span></td>
-              <td><span class=" text-center">Cutomer Support</span></td>
-              <td><span class=" text-center">04644554678</span></td>
-              <td><span class=" text-center">02-08-2022</span></td>
-              <td><span class=" text-center">Pending</span></td>
-
-
-              <td>
-                <div class="parent_div ms-3">
-
-
-                  <div style="cursor: pointer;" class="edit_icon" aria-label="Example icon button with a menu icon"
-                    data-bs-toggle="modal" data-bs-target="#exampleModal2" type="button">
-                    <i class="ri-pencil-line"></i>
-                  </div>
-                  <div style="cursor: pointer;" class="delete_icon" aria-label="Example icon button with a menu icon">
-                    <i class="ri-delete-bin-6-line "></i>
-                  </div>
-                  <div style="cursor: pointer;" class="print_icon" aria-label="Example icon button with a menu icon">
-                    <i class="ri-printer-fill"></i>
-                  </div>
-
-                </div>
-              </td>
-            </tr>
-            <tr>
-
-              <th> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th>
-              <td><span class=" ">JAKE</span></td>
-              <td><span class=" text-center">Cutomer Support</span></td>
-              <td><span class=" text-center">04644554678</span></td>
-              <td><span class=" text-center">02-08-2022</span></td>
-              <td><span class=" text-center">Pending</span></td>
-
-
-              <td>
-                <div class="parent_div ms-3">
-
-
-                  <div style="cursor: pointer;" class="edit_icon" aria-label="Example icon button with a menu icon"
-                    data-bs-toggle="modal" data-bs-target="#exampleModal2" type="button">
-                    <i class="ri-pencil-line"></i>
-                  </div>
-                  <div style="cursor: pointer;" class="delete_icon" aria-label="Example icon button with a menu icon">
-                    <i class="ri-delete-bin-6-line "></i>
-                  </div>
-                  <div style="cursor: pointer;" class="print_icon" aria-label="Example icon button with a menu icon">
-                    <i class="ri-printer-fill"></i>
-                  </div>
-
-                </div>
-              </td>
-            </tr>
-
+@endforeach
+          
+          
           </tbody>
         </table>
       </div>

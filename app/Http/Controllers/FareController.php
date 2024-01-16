@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash as FacadesHash;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
+use App\Models\setTicketPrices;
 
 class FareController extends Controller
 {
@@ -42,4 +43,17 @@ class FareController extends Controller
        return view('faremanagement.ManageFareCategories' , compact('data'));  
           
    }
+   
+  public function savesetTicketPrices(Request $request){
+  $setTicket = new setTicketPrices;
+ 
+  $setTicket->route=$request->route;
+  $setTicket->ticket_clas=$request->ticketclas;
+  $setTicket->price=$request->price;
+  $ticket=$setTicket->save();
+  //$success="Insert Successfully";
+  return view('setTicketPrices',compact('ticket') );
+ 
+ 
+     }
 }

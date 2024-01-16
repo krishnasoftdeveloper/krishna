@@ -366,31 +366,7 @@
                         </td>
                     </tr>
                  
-                    <tr>
-                      
-                      <th> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th>
-                        <td><span class="text-center ">12345</span></td>
-                        <td><span class="text-center">John Doe</span></td>
-                        <td><span class="text-center">City A to City B</span></td>
-                        <td><span class=" text-center">02-08-2022</span></td>
-                        <td><span class=" text-center">$50.00</span></td>
-
-                        <td>
-                            <div class="parent_div ms-3">
-                                
-                                <div style="cursor: pointer;" class="delete_icon"
-                                    aria-label="Example icon button with a menu icon">
-                                    <i class="ri-delete-bin-6-line "></i>
-                                </div>
-                                <div style="cursor: pointer;" class="print_icon"
-                                    aria-label="Example icon button with a menu icon">
-                                    <i class="ri-printer-fill"></i>
-                                </div>
-                           
-                            </div>
-                        </td>
-                    </tr>
-                 
+                  
                     <tr>
                       
                       <th> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th>

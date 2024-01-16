@@ -298,28 +298,37 @@
 
     <div class="container-fluid c1 py-3 my-2">
 
-
-      <div class="row">
+    <form class="needs-validation" action="{{('/savebooking')}}" method="POST" enctype="multipart/form-data" novalidate>
+                                              @if(Session::has('success'))
+                                              <div class="alert alert-success">{{ Session::get('success') }}</div>
+                                              @endif
+                                              @if(Session::has('fail'))
+                                              <div class="alert alert-danger">{{ Session::get('fail') }}</div>
+                                              @endif
+                                              @csrf
+                                             
+                                              
+             <div class="row">
 
         <div class="  col-md-3 col-sm-12" style="line-height: 2rem;  ">
 
           <label class="" for="specificSizeSelect">Customer Name:</label>
-          <input type="text" class="form-control" placeholder="Enter Customer Name">
+          <input type="text" class="form-control"  name="customer_name" placeholder="Enter Customer Name">
         </div>
 
         <div class=" col-sm-4 col-md-3" style="line-height: 2rem;  ">
           <label class="" for="specificSizeSelect">Email ID:</label>
-          <input type="text" class="form-control" placeholder="#12345">
+          <input type="text" class="form-control"  name="email_id" placeholder="#12345">
         </div>
 
         <div class=" col-sm-4 col-md-3" style="line-height: 2rem;  ">
           <label class="" for="specificSizeSelect">Booking ID:</label>
-          <input type="text" class="form-control" placeholder="#12345">
+          <input type="text" class="form-control"  name="bookingid" placeholder="#12345">
         </div>
         <div class=" col-sm-12 col-md-3" style="line-height: 2rem;  ">
 
           <label class="" for="specificSizeSelect">Booking Type:</label>
-          <select class="form-select" id="specificSizeSelect">
+          <select class="form-select" id="specificSizeSelect"  name="bookingtype">
 
             <option value="1">Bus</option>
             <option value="2">Train</option>
@@ -330,25 +339,25 @@
         <div class="col-sm-4 col-md-3 mt-2" style="line-height: 2rem;  ">
 
           <label class="" for="autoSizingInputGroup">Booking Date:</label>
-          <input type="date" class="form-control" id="inputPassword " placeholder="">
+          <input type="date" class="form-control" id="inputPassword"  name="booking_date" placeholder="">
 
         </div>
         <div class="col-sm-4 col-md-3 mt-2" style="line-height: 2rem;  ">
 
           <label class="" for="autoSizingInputGroup">From:</label>
-          <input type="text" class="form-control" id="inputPassword " placeholder="">
+          <input type="text" class="form-control" id="inputPassword"  name="from" placeholder="">
 
         </div>
         <div class="col-sm-4 col-md-3 mt-2" style="line-height: 2rem;  ">
 
           <label class="" for="autoSizingInputGroup">To:</label>
-          <input type="Text" class="form-control" id="inputPassword " placeholder="">
+          <input type="Text" class="form-control" id="inputPassword"  name="to" placeholder="">
 
         </div>
         <div class=" col-sm-12 col-md-3 mt-2" style="line-height: 2rem;  ">
 
           <label class="" for="specificSizeSelect">Booking Status:</label>
-          <select class="form-select" id="specificSizeSelect">
+          <select class="form-select" id="specificSizeSelect"  name="bookingstatus">
 
             <option value="1">Pending</option>
             <option value="2">Confirmed</option>
@@ -363,12 +372,12 @@
       </div>
 
       <div class="d-grid gap-2 d-md-flex justify-content-md-end me-4 mt-3">
-        <button class="btn btn-primary me-md-2 Btn_Save" type="button">ADD</button>
+        <button class="btn btn-primary me-md-2 Btn_Save" type="submit">ADD</button>
 
 
       </div>
     </div>
-
+</form>
      <!-- search bar start -->
      <div class="row mt-3 mb-3">
       <div class="col-md-8 col-sm-12 d-flex mt-2">
@@ -420,19 +429,21 @@
             </tr>
           </thead>
           <tbody style="white-space: nowrap;">
+          @foreach($booking as $u)
+
             <tr>
 
               <th> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th>
-              <td><span>AppleAppleAppleApple
+              <td><span>{{ $u->customer_name }}
               </span></td>
 
-              <td><span>demo@12345#</span></td>
+              <td><span>{{ $u->email }}</span></td>
 
-              <td><span>#12345</span></td>
+              <td><span> {{ $u->booking_id }}</span></td>
 
     
               <td>
-                <span>28-12-2023</span>
+                <span>{{ $u->booking_type }}</span>
               </td>
               <td>
                 <span>Pending</span>
@@ -441,16 +452,16 @@
               <td>
                 <div class="parent_div ">
 
-                  <div style="cursor: pointer;" class="view_icon" aria-label="Example icon button with a menu icon">
+                 <a href=""><div style="cursor: pointer;" class="view_icon" aria-label="Example icon button with a menu icon">
                     <i class="ri-eye-line"></i>
-                  </div>
-                  <div style="cursor: pointer;" class="edit_icon" aria-label="Example icon button with a menu icon">
+                  </div></a>
+                 <a href=""><div style="cursor: pointer;" class="edit_icon" aria-label="Example icon button with a menu icon">
                     <i class="ri-pencil-line"></i>
-                  </div>
+                  </div></a>
 
-                  <div style="cursor: pointer;" class="delete_icon" aria-label="Example icon button with a menu icon">
+                 <a href="{{url('/deletebooking',$u->id)}}"> <div style="cursor: pointer;" class="delete_icon" aria-label="Example icon button with a menu icon">
                     <i class="ri-delete-bin-6-line "></i>
-                  </div>
+                  </div></a>
                   <div style="cursor: pointer;" class="print_icon" aria-label="Example icon button with a menu icon">
                     <i class="ri-printer-fill"></i>
                   </div>
@@ -461,90 +472,10 @@
 
             </tr>
 
-            <tr>
+          
+         
 
-              <th> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th>
-              <td><span>AppleAppleAppleApple
-              </span></td>
-
-              <td><span>demo@12345#</span></td>
-
-              <td><span>#12345</span></td>
-
-    
-              <td>
-                <span>28-12-2023</span>
-              </td>
-              <td>
-                <span>Pending</span>
-              </td>
-
-              <td>
-                <div class="parent_div ">
-
-                  <div style="cursor: pointer;" class="view_icon" aria-label="Example icon button with a menu icon">
-                    <i class="ri-eye-line"></i>
-                  </div>
-                  <div style="cursor: pointer;" class="edit_icon" aria-label="Example icon button with a menu icon">
-                    <i class="ri-pencil-line"></i>
-                  </div>
-
-                  <div style="cursor: pointer;" class="delete_icon" aria-label="Example icon button with a menu icon">
-                    <i class="ri-delete-bin-6-line "></i>
-                  </div>
-                  <div style="cursor: pointer;" class="print_icon" aria-label="Example icon button with a menu icon">
-                    <i class="ri-printer-fill"></i>
-                  </div>
-
-                </div>
-
-              </td>
-
-            </tr>
-
-            <tr>
-
-              <th> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th>
-              <td><span>AppleAppleAppleApple
-              </span></td>
-
-              <td><span>demo@12345#</span></td>
-
-              <td><span>#12345</span></td>
-
-    
-              <td>
-                <span>28-12-2023</span>
-              </td>
-              <td>
-                <span>Pending</span>
-              </td>
-
-              <td>
-                <div class="parent_div ">
-
-                  <div style="cursor: pointer;" class="view_icon" aria-label="Example icon button with a menu icon">
-                    <i class="ri-eye-line"></i>
-                  </div>
-                  <div style="cursor: pointer;" class="edit_icon" aria-label="Example icon button with a menu icon">
-                    <i class="ri-pencil-line"></i>
-                  </div>
-
-                  <div style="cursor: pointer;" class="delete_icon" aria-label="Example icon button with a menu icon">
-                    <i class="ri-delete-bin-6-line "></i>
-                  </div>
-                  <div style="cursor: pointer;" class="print_icon" aria-label="Example icon button with a menu icon">
-                    <i class="ri-printer-fill"></i>
-                  </div>
-
-                </div>
-
-              </td>
-
-            </tr>
-
-
-
+@endforeach
           </tbody>
         </table>
       </div>

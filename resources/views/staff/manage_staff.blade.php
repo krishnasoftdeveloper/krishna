@@ -293,12 +293,24 @@
 
   <div class="container-fluid c1 py-3 my-2">
 
-  <form action="{{url('/manage')}}" method="post">
-    @csrf
+  <form action="{{url('/save_staff')}}" method="post">
+  @if(Session::has('success'))
+                                              <div class="alert alert-success">{{ Session::get('success') }}</div>
+                                              @endif
+                                              @if(Session::has('fail'))
+                                              <div class="alert alert-danger">{{ Session::get('fail') }}</div>
+                                              @endif
+                                              @if(Session::has('danger'))
+                                              <div class="alert alert-danger">{{ Session::get('danger') }}</div>
+                                              @endif
+                                              @if(Session::has('fail'))
+                                              <div class="alert alert-danger">{{ Session::get('fail') }}</div>
+                                              @endif
+                                              @csrf
   <div class="row">
           <div class=" col-sm-4 col-md-3" style="line-height: 2rem;  ">
               <label class="" for="specificSizeSelect">Your Name:</label>
-              <input type="text" class="form-control" name="Name" placeholder="Enter Your Name">
+              <input type="text" class="form-control" name="name" placeholder="Enter Your Name">
           </div>
 
 
@@ -306,25 +318,25 @@
           <div class="  col-md-3 col-sm-12" style="line-height: 2rem;  ">
 
               <label class="" for="specificSizeSelect">Email Address:</label>
-              <input type="email" class="form-control" name="Email" placeholder="Enter Your Email">
+              <input type="email" class="form-control" name="email" placeholder="Enter Your Email">
           </div>
 
           <div class="  col-md-3 col-sm-12" style="line-height: 2rem;  ">
 
             <label class="" for="specificSizeSelect">Phone Number:</label>
-            <input type="text" class="form-control" name="Phone" placeholder="Enter Your Number">
+            <input type="text" class="form-control" name="phone_number" placeholder="Enter Your Number">
         </div>
 
           <div class="col-sm-4 col-md-3" style="line-height: 2rem;  ">
 
               <label class="" for="autoSizingInputGroup">Booking Date:</label>
-              <input type="date" class="form-control" name="Date" id="inputPassword " placeholder="">
+              <input type="date" class="form-control" name="booking_date" id="inputPassword " placeholder="">
 
           </div>
           <div class=" col-sm-12 col-md-3 mt-3" style="line-height: 2rem;  ">
 
               <label class="" for="specificSizeSelect">Destination:</label>
-              <select class="form-select" id="specificSizeSelect" name="Destination">
+              <select class="form-select" id="specificSizeSelect" name="destination">
 
                   <option value="1">Paris</option>
                   <option value="2">Tokyo</option>
@@ -335,21 +347,21 @@
           <div class="col-sm-4 col-md-3 mt-3" style="line-height: 2rem;  ">
 
             <label class="" for="autoSizingInputGroup">Number of Travelers:</label>
-            <input type="text" class="form-control" name="No_Of_travels" id="inputPassword " placeholder="">
+            <input type="text" class="form-control" name="number_travelers" id="inputPassword " placeholder="">
 
         </div>
 
         <div class="col-sm-4 col-md-3 mt-3" style="line-height: 2rem;  ">
 
           <label class="" for="autoSizingInputGroup">From:</label>
-          <input type="text" name="Sender" class="form-control" id="inputPassword " placeholder="">
+          <input type="text" name="from" class="form-control" id="inputPassword " placeholder="">
 
       </div>
 
       <div class="col-sm-4 col-md-3 mt-3" style="line-height: 2rem;  ">
 
         <label class="" for="autoSizingInputGroup">To:</label>
-        <input type="text" class="form-control" name="receiver" id="inputPassword " placeholder="">
+        <input type="text" class="form-control" name="to" id="inputPassword " placeholder="">
 
     </div>
 
@@ -416,170 +428,66 @@
                   </tr>
               </thead>
               <tbody style="white-space: nowrap;">
+              @foreach($staff as $u)
                   <tr>
                       
 
                     <th> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th>
-                      <td><span class=" text-center">#7678</span></td>
+                      <td><span class=" text-center">{{$u->name}}</span></td>
 
 
-                      <td><span class="text-center">info@gmail.com
+                      <td><span class="text-center">{{$u->email}}
                           </span></td>
                      
                           <td>
-                              <span class="text-center">1234567890</span>
+                              <span class="text-center">{{$u->phone_number}}</span>
                           </td>
                           <td>
-                              <span class="text-center p-2">28-12-2023</span>
+                              <span class="text-center p-2">{{$u->booking_date}}</span>
                           </td>
                           <td>
-                            <span class="text-center p-2">Paris</span>
+                            <span class="text-center p-2">{{$u->destination}}</span>
                         </td>
                         <td>
-                          <span class="text-center p-5">4</span>
+                          <span class="text-center p-5">{{$u->number_travelers}}</span>
                       </td>
                       <td>
-                        <span class="text-center p-2">ABCD</span>
+                        <span class="text-center p-2">{{$u->from}}</span>
                     </td>
                     <td>
-                      <span class="text-center p-2">WXYZ</span>
+                      <span class="text-center p-2">{{$u->to}}</span>
                   </td>
 
                       <td>
-                          <div class="parent_div ">
+                        <a href="">
+                        <div class="parent_div ">
                               <div style="cursor: pointer;" class="view_icon"
                                   aria-label="Example icon button with a menu icon">
                                   <i class="ri-eye-line"></i>
                               </div>
-                              <div style="cursor: pointer;" class="edit_icon"
+                        </a>
+                         <a href="{{url('/editstaff',$u->id)}}"> <div style="cursor: pointer;" class="edit_icon"
                                   aria-label="Example icon button with a menu icon">
                                   <i class="ri-pencil-line"></i>
-                              </div>
-
-                              <div style="cursor: pointer;" class="delete_icon"
+                              </div></a>
+                             <a href="{{url('/deletestaff',$u->id)}}"><div style="cursor: pointer;" class="delete_icon"
                                   aria-label="Example icon button with a menu icon">
                                   <i class="ri-delete-bin-6-line "></i>
-                              </div>
-                              <div style="cursor: pointer;" class="print_icon"
+                              </div></a>
+                      <a href=""><div style="cursor: pointer;" class="print_icon"
                                   aria-label="Example icon button with a menu icon">
                                   <i class="ri-printer-fill"></i>
-                              </div>
-
+                              </div></a>
+                      
                           </div>
 
                       </td>
 
                   </tr>
+@endforeach
+                 
 
-                  <tr>
-                      
-
-                    <th> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th>
-                      <td><span class=" text-center">#7678</span></td>
-
-
-                      <td><span class="text-center">info@gmail.com
-                          </span></td>
-                     
-                          <td>
-                              <span class="text-center">1234567890</span>
-                          </td>
-                          <td>
-                              <span class="text-center p-2">28-12-2023</span>
-                          </td>
-                          <td>
-                            <span class="text-center p-2">Paris</span>
-                        </td>
-                        <td>
-                          <span class="text-center p-5">4</span>
-                      </td>
-                      <td>
-                        <span class="text-center p-2">ABCD</span>
-                    </td>
-                    <td>
-                      <span class="text-center p-2">WXYZ</span>
-                  </td>
-
-                      <td>
-                          <div class="parent_div ">
-                              <div style="cursor: pointer;" class="view_icon"
-                                  aria-label="Example icon button with a menu icon">
-                                  <i class="ri-eye-line"></i>
-                              </div>
-                              <div style="cursor: pointer;" class="edit_icon"
-                                  aria-label="Example icon button with a menu icon">
-                                  <i class="ri-pencil-line"></i>
-                              </div>
-
-                              <div style="cursor: pointer;" class="delete_icon"
-                                  aria-label="Example icon button with a menu icon">
-                                  <i class="ri-delete-bin-6-line "></i>
-                              </div>
-                              <div style="cursor: pointer;" class="print_icon"
-                                  aria-label="Example icon button with a menu icon">
-                                  <i class="ri-printer-fill"></i>
-                              </div>
-
-                          </div>
-
-                      </td>
-
-                  </tr>
-
-                  <tr>
-                      
-
-                    <th> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th>
-                      <td><span class=" text-center">#7678</span></td>
-
-
-                      <td><span class="text-center">info@gmail.com
-                          </span></td>
-                     
-                          <td>
-                              <span class="text-center">1234567890</span>
-                          </td>
-                          <td>
-                              <span class="text-center p-2">28-12-2023</span>
-                          </td>
-                          <td>
-                            <span class="text-center p-2">Paris</span>
-                        </td>
-                        <td>
-                          <span class="text-center p-5">4</span>
-                      </td>
-                      <td>
-                        <span class="text-center p-2">ABCD</span>
-                    </td>
-                    <td>
-                      <span class="text-center p-2">WXYZ</span>
-                  </td>
-
-                      <td>
-                          <div class="parent_div ">
-                              <div style="cursor: pointer;" class="view_icon"
-                                  aria-label="Example icon button with a menu icon">
-                                  <i class="ri-eye-line"></i>
-                              </div>
-                              <div style="cursor: pointer;" class="edit_icon"
-                                  aria-label="Example icon button with a menu icon">
-                                  <i class="ri-pencil-line"></i>
-                              </div>
-
-                              <div style="cursor: pointer;" class="delete_icon"
-                                  aria-label="Example icon button with a menu icon">
-                                  <i class="ri-delete-bin-6-line "></i>
-                              </div>
-                              <div style="cursor: pointer;" class="print_icon"
-                                  aria-label="Example icon button with a menu icon">
-                                  <i class="ri-printer-fill"></i>
-                              </div>
-
-                          </div>
-
-                      </td>
-
-                  </tr>
+                 
 
               </tbody>
           </table>

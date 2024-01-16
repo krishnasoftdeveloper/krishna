@@ -1,8 +1,6 @@
 @extends('layouts.master')
-
- 
- @section('content')
- <!DOCTYPE html>
+@section('content')
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -266,8 +264,7 @@
   <!-- End Header -->
 
   <!-- ======= Sidebar ======= -->
-  
-
+ 
   
   <!-- End Sidebar-->
 
@@ -290,38 +287,45 @@
     
     
     <div class="container-fluid c1 py-3 my-2">
+    <?php
+    if(isset($ticket)){
+      echo "Inserted Successfully";
+    }
+    ?>
+    <form action="{{url('/savesetTicketPrices')}}" method="post">
+
+      @csrf
+    <div class="row">
     
-    
-        <div class="row">
-    
-          <div class=" col-sm-12 col-md-3" style="line-height: 2rem;  ">
-    
-              <label class="" for="specificSizeSelect">Route:</label>
-              <input type="text" class="form-control" placeholder="Enter Route Name">
-          </div>
-    
-            <div class=" col-sm-4 col-md-3" style="line-height: 2rem;  ">
-                <label class="" for="specificSizeSelect">Ticket Class:</label>
-                <input type="text" class="form-control" placeholder="Enter Ticket Class">
-            </div>
-    
-    
-    
-            <div class="  col-md-3 col-sm-12" style="line-height: 2rem;  ">
-    
-                <label class="" for="specificSizeSelect">Price:</label>
-                <input type="text" class="form-control" placeholder="Enter Ticket Price">
-            </div>
-    
-    
-        </div>
-    
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end me-4 mt-3">
-            <button class="btn btn-primary me-md-2 Btn_Save" type="button">ADD Ticket</button>
-          
-        </div>
+    <div class=" col-sm-12 col-md-3" style="line-height: 2rem;  ">
+
+        <label class="" for="specificSizeSelect">Route:</label>
+        <input type="text" class="form-control" placeholder="Enter Route Name" name="route">
     </div>
+
+      <div class=" col-sm-4 col-md-3" style="line-height: 2rem;  ">
+          <label class="" for="specificSizeSelect">Ticket Class:</label>
+          <input type="text" class="form-control" placeholder="Enter Ticket Class" name="ticketclas">
+      </div>
+
+
+
+      <div class="  col-md-3 col-sm-12" style="line-height: 2rem;  ">
+
+          <label class="" for="specificSizeSelect">Price:</label>
+          <input type="text" class="form-control" placeholder="Enter Ticket Price" name="price">
+      </div>
+
+
+  </div>
+
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end me-4 mt-3">
+      <button class="btn btn-primary me-md-2 Btn_Save" type="submit">ADD Ticket</button>
     
+  </div>
+</div>
+ </form>
+   
      <!-- search bar start -->
      <div class="row mt-3 mb-3">
       <div class="col-md-8 col-sm-12 d-flex mt-2">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash as FacadesHash;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
+use App\Models\Booking;
 
 use GuzzleHttp\Client;
 
@@ -17,7 +18,9 @@ class BookingController extends Controller
           if(Session::has('loginId')){
            $data = User::where('id','=',Session::get('loginId'))->first();
            }
-           return view('booking/manage_booking' , compact('data'));  
+           $booking = Booking::all();
+
+           return view('booking/manage_booking' , compact('data','booking'));  
               
    }
    public function cancel_or_modify(){
@@ -64,4 +67,49 @@ echo $u."<br>";
     return view('front.bus_booking', compact('data'));
 
 }
+
+
+public function save_booking(Request $request){
+  $product = new Booking;
+  $product->customer_name  = $request->customer_name;
+  $product->email = $request->email_id ;
+  $product->booking_id = $request->bookingid;
+  $product->booking_type = $request->bookingtype;
+  $product->booking_date= $request->booking_date;
+  $product->from= $request->from;
+  $product->to= $request->to;
+  $product->booking_status= $request->bookingstatus;
+  
+  // echo"</pre>";
+  // print_r($product);
+  // echo"<pre>";
+  // die;
+   $res =  $product->save();
+
+  if($res){
+      return back()->with('success','Booking successfully');
+ }
+  else{
+      return back()->with('fail','error');
+  }
+
+ 
+}
+
+public function deletebooking(Request $request , $id){
+  $data= Booking::findOrFail($id);
+  $data->delete();
+  return back()->with('danger','Booking deleted successfully');
+}
+public function editstaff($id){
+$data = array();
+ if (Session::has('loginId')) {
+     $data = User::where('id', '=', Session::get('loginId'))->first();
+ }
+ 
+ $staff = Staff::findOrFail($id);
+
+return view('staff.editstaff',compact('data','staff'));
+}
+
 }

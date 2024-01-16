@@ -23,3 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/amenities', [ApiController::class, 'makeApiRequest']);
 Route::get('/stopdetails', [ApiController::class, 'stopdetails']);
 Route::get('/stop', [ApiController::class, 'stop']);
+Route::get('/search', [ApiController::class, 'search']);
+
