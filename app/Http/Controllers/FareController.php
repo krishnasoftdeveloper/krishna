@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Hash as FacadesHash;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use App\Models\setTicketPrices;
+use App\Models\DiscountOffer;
+use App\Models\ManageFareCategories;
 
 class FareController extends Controller
 {
@@ -16,7 +18,11 @@ class FareController extends Controller
           if(Session::has('loginId')){
            $data = User::where('id','=',Session::get('loginId'))->first();
            }
-           return view('routemanagement.manage_bus_train' , compact('data'));  
+           $discount_offer = DiscountOffer::all();
+           dd($discount_offer);
+           die;
+
+           return view('routemanagement.manage_bus_train' , compact('data','discount_offer'));  
               
    }
    public function setTicketPrices(){
@@ -24,7 +30,9 @@ class FareController extends Controller
       if(Session::has('loginId')){
        $data = User::where('id','=',Session::get('loginId'))->first();
        }
-       return view('faremanagement.setTicketPrices' , compact('data'));  
+       $setTicketPrices = setTicketPrices::all();
+
+       return view('faremanagement.setTicketPrices' , compact('data','setTicketPrices'));  
           
    }
    public function ApplyDiscountorOffers(){
@@ -40,7 +48,9 @@ class FareController extends Controller
       if(Session::has('loginId')){
        $data = User::where('id','=',Session::get('loginId'))->first();
        }
-       return view('faremanagement.ManageFareCategories' , compact('data'));  
+       $manage_fare = ManageFareCategories::all();
+
+       return view('faremanagement.ManageFareCategories' , compact('data','manage_fare'));  
           
    }
    
@@ -52,8 +62,54 @@ class FareController extends Controller
   $setTicket->price=$request->price;
   $ticket=$setTicket->save();
   //$success="Insert Successfully";
-  return view('setTicketPrices',compact('ticket') );
+  if($ticket){
+    return back()->with('success','Ticket successfully');
+  }
+   else{
+    return back()->with('fail','error');
+   }
  
  
-     }
+}
+public function ticket_delete(Request $request , $id){
+  $data= setTicketPrices::findOrFail($id);
+  $data->delete();
+  return back()->with('danger','Booking deleted successfully');
+}
+
+public function discount_offer(Request $request){
+  // echo "hell";
+   
+ $discount_offer= new DiscountOffer;
+ $discount_offer->route=$request->route;
+ $discount_offer->discounttype=$request->discounttype;
+ $discount_offer->discountvalue=$request->discountvalue;
+
+ $discount_offer->validity=$request->validity;
+ $discount=  $discount_offer->save();
+
+ if($discount){
+  return back()->with('success','Discount Offer Created successfully');
+}
+ else{
+  return back()->with('fail','error');
+ }
+
+}
+
+public function manage_fare_categories(Request $request){
+  $manage_fare=  new ManageFareCategories;
+  $manage_fare->category_name=$request->category_name;
+  $manage_fare->descrption=$request->descrption;
+  $manage_fare->base_price=$request->base_price;
+  $manage_fare=$manage_fare->save();
+  if($manage_fare){
+    return back()->with('success','ManageFareCategories Created successfully');
+  }
+   else{
+    return back()->with('fail','error');
+   }
+
+}
+
 }

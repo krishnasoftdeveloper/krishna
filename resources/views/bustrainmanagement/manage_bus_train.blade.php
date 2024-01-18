@@ -298,13 +298,20 @@
 
 <div class="container-fluid c1 py-3 my-2">
 
-
+<form action="{{('/save_bus_train_route')}}" method="post">
+@if(Session::has('success'))
+                                              <div class="alert alert-success">{{ Session::get('success') }}</div>
+                                              @endif
+                                              @if(Session::has('fail'))
+                                              <div class="alert alert-danger">{{ Session::get('fail') }}</div>
+                                              @endif
+                                              @csrf
     <div class="row">
 
-      <div class=" col-sm-12 col-md-4" style="line-height: 2rem;  ">
+      <div class="col-sm-12 col-md-4" style="line-height: 2rem;">
 
           <label class="" for="specificSizeSelect">Select Transport Type:</label>
-          <select class="form-select" id="specificSizeSelect">
+          <select class="form-select" name="type" id="specificSizeSelect">
 
               <option value="1">Bus</option>
               <option value="2">Train</option>
@@ -314,46 +321,43 @@
 
         <div class=" col-sm-4 col-md-4" style="line-height: 2rem;  ">
             <label class="" for="specificSizeSelect">Route Name:</label>
-            <input type="text" class="form-control" placeholder="abc">
+            <input type="text" class="form-control" name="route_name" placeholder="abc">
         </div>
 
 
 
         <div class="  col-md-4 col-sm-12" style="line-height: 2rem;  ">
 
-            <label class="" for="specificSizeSelect">Stops (comma-separated):</label>
-            <input type="text" class="form-control" placeholder="Stops">
+            <label class="" for="specificSizeSelect">Stops(comma-separated):</label>
+            <input type="text" class="form-control" name="stops" placeholder="Stops">
         </div>
 
         <div class="col-sm-4 col-md-4 mt-2" style="line-height: 2rem;  ">
 
             <label class="" for="autoSizingInputGroup">Departure Time:</label>
-            <input type="time" class="form-control" id="inputPassword " placeholder="time">
+            <input type="time" class="form-control" name="departure_time" id="inputPassword " placeholder="time">
 
         </div>
         <div class="col-sm-4 col-md-4 mt-2" style="line-height: 2rem;  ">
 
           <label class="" for="autoSizingInputGroup">Arivel Time:</label>
-          <input type="time" class="form-control" id="inputPassword " placeholder="time">
+          <input type="time" class="form-control" name="arivel_time" id="inputPassword " placeholder="time">
 
       </div>
       
       <div class="  col-md-4 col-sm-12 mt-2" style="line-height: 2rem;  ">
 
         <label class="" for="specificSizeSelect">Fare:</label>
-        <input type="text" class="form-control" placeholder="Stops">
+        <input type="text" class="form-control" name="fare" placeholder="Stops">
+    </div>
     </div>
 
-     
-
-    </div>
-
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end me-4 mt-3">
-        <button class="btn btn-primary me-md-2 Btn_Save" type="button">ADD ROUTE</button>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end me-4 mt-3">
+        <button class="btn btn-primary me-md-2 Btn_Save" type="submit">Add Route</button>
       
     </div>
 </div>
-
+</form>
  <!-- search bar start -->
  <div class="row mt-3 mb-3">
   <div class="col-md-8 col-sm-12 d-flex mt-2">

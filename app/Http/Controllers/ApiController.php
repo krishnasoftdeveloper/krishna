@@ -17,10 +17,10 @@ class ApiController extends Controller
         $response = $client->get($url);
 
         // Handle the API response, e.g., decode JSON response
-        $data = json_decode($response->getBody(), true);
-        foreach($data['stop_info'] as $key=>$u){
+        $sss = json_decode($response->getBody(), true);
+        /*foreach($data['stop_info'] as $key=>$u){
             echo $key."<br>" .$u;
-        }
+        }*/
             echo "<pre>";
  /* print_r($data);
       $travel=[];
@@ -32,20 +32,13 @@ foreach($travel as $u){
   
        */ 
        
-        $match_info = $data['name'][0]['landmark'][0]['address'];
-        foreach ($match_info as $key => $value) {
-            $match_details = $value['matchInfo'];
-
-        }
-
-        // print_r($match_details);
-        // die();
-        return view('front.bus_booking', compact('data', 'match_details'));
+        
+      
+        return view('front.bus_booking');
 
 
         // Process $data as needed
 
-        return view('front.bus_booking')->with('data'); // or return a view, redirect, etc.
     }
 
     public function stop()
@@ -59,7 +52,7 @@ foreach($travel as $u){
         $data = json_decode($response->getBody(), true);
         echo "<pre>";
         print_r($data);
-        echo json_encode ($data);
+        //echo json_encode ($data);
         die;
 
         // Process $data as needed

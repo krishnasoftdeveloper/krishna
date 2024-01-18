@@ -1,9 +1,6 @@
 @extends('layouts.master')
-
- 
- @section('content')
-
- <!DOCTYPE html>
+@section('content')
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -54,7 +51,7 @@
   </div><!-- End Logo -->
 
   <div class="search-bar">
-    <form class="search-form d-flex align-items-center" method="POST" action="#">
+    <form class="search-form d-flex align-items-center" action="#">
       <input type="text" name="query" placeholder="Search" title="Enter search keyword">
       <button type="submit" title="Search"><i class="bi bi-search"></i></button>
     </form>
@@ -275,7 +272,6 @@
 <!-- ======= Sidebar ======= -->
 
 
-
 <!-- End Sidebar-->
 
   <main id="main" class="main">
@@ -297,31 +293,34 @@
 
 
   <div class="container-fluid c1 py-3 my-2">
+<form action="{{url('/handle_refunds_save')}}" method="post">
+  @csrf
+<div class="row">
 
 
-      <div class="row">
+<div class=" col-sm-4 col-md-6" style="line-height: 2rem;  ">
+    <label class="" for="specificSizeSelect">Transaction ID:</label>
+    <input type="text" class="form-control" placeholder="Enter Your Transaction ID" name="transaction_id">
+</div>
 
 
-          <div class=" col-sm-4 col-md-6" style="line-height: 2rem;  ">
-              <label class="" for="specificSizeSelect">Transaction ID:</label>
-              <input type="text" class="form-control" placeholder="Enter Your Transaction ID">
-          </div>
-       
-        
-        <div class="col-sm-4 col-md-6" style="line-height: 2rem;  ">
+<div class="col-sm-4 col-md-6" style="line-height: 2rem;  ">
 
-            <label class="" for="autoSizingInputGroup">Reason for Refund/Cancellation:</label>
-            <input type="text" class="form-control" id="inputPassword " placeholder="Enter Reason">
+  <label class="" for="autoSizingInputGroup">Reason for Refund/Cancellation:</label>
+  <input type="text" class="form-control" id="inputPassword " placeholder="Enter Reason" name="reason_Refunds">
 
-        </div>
+</div>
 
-        
-      </div>
 
-      <div class="d-grid gap-2 d-md-flex justify-content-md-end me-4 mt-3">
-          <button class="btn btn-primary me-md-2 Btn_Save" type="button">Cancle</button>
-        
-      </div>
+</div>
+
+<div class="d-grid gap-2 d-md-flex justify-content-md-end me-4 mt-3">
+<button class="btn btn-primary me-md-2 Btn_Save" type="submit">S ubmit</button>
+
+</div>
+</form>
+
+   
   </div>
    <!-- search bar start -->
    <div class="row mt-3 mb-3">
@@ -494,7 +493,7 @@
           </table>
       </div>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-          <button class="btn btn-primary me-md-2 Btn_Save" type="button">Save</button>
+          <button class="btn btn-primary me-md-2 Btn_Save" type="submit">Save</button>
           <button class="btn btn-primary Btn_Close" type="button">Cancel</button>
       </div>
   </div>

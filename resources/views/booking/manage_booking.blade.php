@@ -283,11 +283,14 @@
     <div class="container-fluid ">
 
       <div class="row">
-        <div class="col-sm-4 col-md-4 my-3">
-
-          <h4 class="d-inline"><i class="fa-solid fa-book-section icon"></i>
-            Manage Bookings
-          </h4>
+        <div class="col-sm-12 col-md-12 my-3 px-0">
+          <div class="d-flex justify-content-between">
+            <h4 class="d-inline"><i class="fa-solid fa-book-section icon"></i>
+              Manage Bookings
+            </h4>
+            <button class="btn btn-primary me-md-2 Btn_Save" type="submit">ADD</button>
+          </div>
+          
         </div>
 
 
@@ -308,9 +311,9 @@
                                               @csrf
                                              
                                               
-             <div class="row">
+    <div class="row mb-4">
 
-        <div class="  col-md-3 col-sm-12" style="line-height: 2rem;  ">
+        <div class=" col-md-3 col-sm-12" style="line-height: 2rem;  ">
 
           <label class="" for="specificSizeSelect">Customer Name:</label>
           <input type="text" class="form-control"  name="customer_name" placeholder="Enter Customer Name">
@@ -364,23 +367,17 @@
             <option value="3">Cancelled</option>
           </select>
         </div>
-
-        
-
-
-
       </div>
-
-      <div class="d-grid gap-2 d-md-flex justify-content-md-end me-4 mt-3">
-        <button class="btn btn-primary me-md-2 Btn_Save" type="submit">ADD</button>
-
-
-      </div>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button class="btn btn-primary me-md-2 Btn_Save" type="submit">Save</button>
+        <button class="btn btn-primary Btn_Close" type="button">Cancel</button>
     </div>
+    </div>
+    
 </form>
      <!-- search bar start -->
      <div class="row mt-3 mb-3">
-      <div class="col-md-8 col-sm-12 d-flex mt-2">
+      <div class="col-md-12 col-sm-12 d-flex mt-2">
         <label for="" class="px-1 ">Show</label>
         <select name="" id="" style="font-size: small; height: 4vh;">
           <option value="">10</option>
@@ -478,12 +475,11 @@
 @endforeach
           </tbody>
         </table>
+        
       </div>
-      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <button class="btn btn-primary me-md-2 Btn_Save" type="button">Save</button>
-        <button class="btn btn-primary Btn_Close" type="button">Cancel</button>
-      </div>
+      
     </div>
+    
 
   </main>
   <!-- End #main -->

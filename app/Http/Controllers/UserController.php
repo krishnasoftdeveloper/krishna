@@ -34,7 +34,7 @@ public function save_user_account(Request $request){
    
 
   $manage_user=new ManageUser;
- $manage_user->image=$request->file('image')->store('uploads');
+  $manage_user->image=$request->file('image')->store('uploads');
 
   $manage_user->name=$request->name;
   $manage_user->last_name=$request->last_name;

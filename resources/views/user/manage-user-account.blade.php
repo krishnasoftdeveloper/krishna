@@ -283,9 +283,11 @@
   ?>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-6 col-md-6 my-3">
-          <h4 class="d-inline"><i class="fa-solid fa-people-roof icon"></i>
-            Manage Users </h4>
+      <div class="col-sm-12 col-md-12 my-3 px-0">
+          <div class="d-flex justify-content-between">
+            <h4 class="d-inline"><i class="fa-solid fa-people-roof icon"></i> Manage Users </h4>
+            <button class="btn float-end Btn_Save" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button">Add Users</button>
+          </div>
         </div>
       </div>
     </div>
@@ -580,7 +582,7 @@
 
 
     <div class="container-fluid c1 my-4 py-2  " style="margin-top: 15px !important">
-    @if(Session::has('danger'))
+                                             @if(Session::has('danger'))
                                               <div class="alert alert-danger">{{ Session::get('danger') }}</div>
                                               @endif
                                               @if(Session::has('fail'))
@@ -642,8 +644,7 @@
           </tbody>
         </table>
       </div>
-      <button class="btn  mb-5 mt-3  float-end Btn_Save" data-bs-toggle="modal" data-bs-target="#exampleModal"
-        type="button">Add Users</button>
+      
     </div>
 
   </main>

@@ -70,22 +70,30 @@ Route::get('/cancel_or_modify', [BookingController::class, 'cancel_or_modify']);
 
 Route::get('/manage_bus_train', [RouteController::class, 'manage_bus_train']);
 Route::get('/ManageScheduleRouts', [RouteController::class, 'ManageScheduleRouts']);
+Route::post('/save_bus_train_route', [RouteController::class, 'save_bus_train_route']);
+
 
 Route::get('/seat_availability_spacific', [RouteController::class, 'seat_availability_spacific']);
 
 
 Route::get('/setTicketPrices', [FareController::class, 'setTicketPrices']);
 Route::post('/savesetTicketPrices', [FareController::class, 'savesetTicketPrices']);
+Route::get('/ticket_delete/{id}', [FareController::class, 'ticket_delete']);
+
 
 Route::get('/ApplyDiscountorOffers', [FareController::class, 'ApplyDiscountorOffers']);
 Route::get('/ManageFareCategories', [FareController::class, 'ManageFareCategories']);
+Route::post('/saveManageFareCategories', [FareController::class, 'manage_fare_categories']);
 
 
 Route::get('/Managebuses_trains', [BusTrainController::class, 'Managebuses_trains']);
 Route::get('/track_bus_trains', [BusTrainController::class, 'track_bus_trains']);
 
 Route::get('/moniter_payment', [PaymentController::class, 'moniter_payment']);
+Route::post('/moniter_payment_save', [PaymentController::class,'moniter_payment_save']);
 Route::get('/handle_refunds', [PaymentController::class, 'handle_refunds']);
+Route::post('/handle_refunds_save', [PaymentController::class, 'handle_refunds_save']);
+
 Route::get('/intregrate_with_paymentGatway', [PaymentController::class, 'intregrate_with_paymentGatway']);
 
 Route::get('/payment_report', [ReportController::class, 'payment_report']);

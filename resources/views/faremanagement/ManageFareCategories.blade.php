@@ -1,8 +1,6 @@
 @extends('layouts.master')
-
- 
- @section('content')
- <!DOCTYPE html>
+@section('content')
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -267,7 +265,8 @@
 
   <!-- ======= Sidebar ======= -->
   
-
+ 
+  
   <!-- End Sidebar-->
 
   <main id="main" class="main">
@@ -289,37 +288,50 @@
     
     
     <div class="container-fluid c1 py-3 my-2">
+      <?php
+      if(isset($manage_fare)){
+        echo "Inserted Successfully";
+      }
+      ?>
+    <form action="{{url('/saveManageFareCategories')}}" method="post">
+    @if(Session::has('success'))
+                                              <div class="alert alert-success">{{ Session::get('success') }}</div>
+                                              @endif
+                                              @if(Session::has('fail'))
+                                              <div class="alert alert-danger">{{ Session::get('fail') }}</div>
+                                              @endif
+          @csrf
+    <div class="row">
     
-    
-        <div class="row">
-    
-          <div class=" col-sm-12 col-md-4" style="line-height: 2rem;  ">
-    
-              <label class="" for="specificSizeSelect">Category Name:</label>
-              <input type="text" class="form-control" placeholder="Enter Categories Name">
-          </div>
-    
-            <div class=" col-sm-4 col-md-4" style="line-height: 2rem;  ">
-                <label class="" for="specificSizeSelect">Description:</label>
-                <input type="text" class="form-control" placeholder="Enter Description">
-            </div>
-    
-    
-    
-            <div class="  col-md-4 col-sm-12" style="line-height: 2rem;  ">
-    
-                <label class="" for="specificSizeSelect">Base Price:</label>
-                <input type="text" class="form-control" placeholder="Enter Base Price">
-            </div>
-    
-    
-        </div>
-    
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end me-4 mt-3">
-            <button class="btn btn-primary me-md-2 Btn_Save" type="button">Add Categories</button>
-          
-        </div>
+    <div class=" col-sm-12 col-md-4" style="line-height: 2rem;  ">
+
+        <label class="" for="specificSizeSelect">Category Name:</label>
+        <input type="text" class="form-control" placeholder="Enter Categories Name" name="category_name">
     </div>
+
+      <div class=" col-sm-4 col-md-4" style="line-height: 2rem;  ">
+          <label class="" for="specificSizeSelect">Description:</label>
+          <input type="text" class="form-control" placeholder="Enter Description" name="descrption">
+      </div>
+
+
+
+      <div class="  col-md-4 col-sm-12" style="line-height: 2rem;  ">
+
+          <label class="" for="specificSizeSelect">Base Price:</label>
+          <input type="text" class="form-control" placeholder="Enter Base Price" name="base_price">
+      </div>
+
+
+  </div>
+
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end me-4 mt-3">
+      <button class="btn btn-primary me-md-2 Btn_Save" type="submit">Add Categories</button>
+    
+  </div>
+</div>
+    </form>
+
     
      <!-- search bar start -->
      <div class="row mt-3 mb-3">
@@ -369,17 +381,18 @@
                     </tr>
                 </thead>
                 <tbody style="white-space: nowrap;">
+                @foreach($manage_fare as $u)
                     <tr>
                      
                       <th> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th>
-                        <td><span class="text-center">bus</span></td>
+                        <td><span class="text-center">{{$u->category_name}}</span></td>
     
     
-                        <td><span class="text-center">Indore
+                        <td><span class="text-center">{{$u->descrption}}
                             </span></td>
                        
                             <td>
-                                <span class="text-center p-2">200</span>
+                                <span class="text-center p-2">{{$u->base_price}}</span>
                             </td>
     
                         <td>
@@ -409,89 +422,9 @@
                         </td>
     
                     </tr>
-                    <tr>
-                     
-                      <th> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th>
-                        <td><span class="text-center">bus</span></td>
-    
-    
-                        <td><span class="text-center">Indore
-                            </span></td>
-                       
-                            <td>
-                                <span class="text-center p-2">200</span>
-                            </td>
-                          
-    
-                        <td>
-                            <div class="parent_div ">
-    
-                                
-                                <div style="cursor: pointer;" class="view_icon"
-                                    aria-label="Example icon button with a menu icon">
-                                    <i class="ri-eye-line"></i>
-                                </div>
-                                <div style="cursor: pointer;" class="edit_icon"
-                                    aria-label="Example icon button with a menu icon">
-                                    <i class="ri-pencil-line"></i>
-                                </div>
-    
-                                <div style="cursor: pointer;" class="delete_icon"
-                                    aria-label="Example icon button with a menu icon">
-                                    <i class="ri-delete-bin-6-line "></i>
-                                </div>
-                                <div style="cursor: pointer;" class="print_icon"
-                                    aria-label="Example icon button with a menu icon">
-                                    <i class="ri-printer-fill"></i>
-                                </div>
-    
-                            </div>
-    
-                        </td>
-    
-                    </tr>
-    
-                    <tr>
-                      <th> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th>
-    
-                        <td><span class="text-center">bus</span></td>
-    
-    
-                        <td><span class="text-center">Indore
-                            </span></td>
-                       
-                            <td>
-                                <span class="text-center p-2">200</span>
-                            </td>
-                          
-    
-                        <td>
-                            <div class="parent_div ">
-    
-                                
-                                <div style="cursor: pointer;" class="view_icon"
-                                    aria-label="Example icon button with a menu icon">
-                                    <i class="ri-eye-line"></i>
-                                </div>
-                                <div style="cursor: pointer;" class="edit_icon"
-                                    aria-label="Example icon button with a menu icon">
-                                    <i class="ri-pencil-line"></i>
-                                </div>
-    
-                                <div style="cursor: pointer;" class="delete_icon"
-                                    aria-label="Example icon button with a menu icon">
-                                    <i class="ri-delete-bin-6-line "></i>
-                                </div>
-                                <div style="cursor: pointer;" class="print_icon"
-                                    aria-label="Example icon button with a menu icon">
-                                    <i class="ri-printer-fill"></i>
-                                </div>
-    
-                            </div>
-    
-                        </td>
-    
-                    </tr>
+                    @endforeach
+                   
+                  
     
                 </tbody>
             </table>

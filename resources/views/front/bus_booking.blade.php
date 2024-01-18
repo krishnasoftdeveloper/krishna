@@ -1,18 +1,5 @@
-
-                             @if(!empty($match_details))
-                                    @foreach($match_details as $item)
-
-                                    <tr>
-                                        <td>{{ $item->name }}</td>
-                                        <td>{{ $item->landmark }}</td>
-                                        <td>{{ $item->address }}</td>
-                                       
-                                        <td>
-
-                      @endforeach
-                      @endif
-
-
+@extends('layouts.master')
+@section('content')
 
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
@@ -663,7 +650,6 @@
                             </div>
                         </div>
 
-
                     </div>
                     <div class="dropdown py-1 border-bottom">
                         <button class="dropdown-btn d-flex justify-content-between bg-white"
@@ -772,9 +758,8 @@
                                 <li class="list-group-item border-0 bg-transparent d-flex">
                                     <p class="fw-bold mb-0" style="color: #011950;">1.45 PM</p>
                                     <ul>
-
-                                        <li class="fw-bold mb-0" style="color: #011950; list-style-type: disc;">{{$data->name ?? ''}}</li>
-
+                                        <li class="fw-bold mb-0" style="color: #011950; list-style-type: disc;">Boston,
+                                            MA</li>
                                         <li class="mb-0 text-start text-black" style="list-style-type: none;">
                                             <p class="mb-0">South Station <span style="color: #ff7f00;">map <img
                                                         src="./images/Icon awesome-map.svg" width="16px" height="16px"
@@ -1005,3 +990,5 @@
 </body>
 
 </html>
+
+@endsection

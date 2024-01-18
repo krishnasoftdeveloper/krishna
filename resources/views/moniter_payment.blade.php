@@ -1,3 +1,5 @@
+@extends('layouts.master')
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -269,285 +271,6 @@
 
 <!-- ======= Sidebar ======= -->
 
-<aside id="sidebar" class="sidebar">
-  <ul class="sidebar-nav" id="sidebar-nav">
-
-    <li class="nav-item">
-      <a class="nav-link " href="index.html">
-        <i class="bi bi-grid"></i>
-        <span>Dashboard</span>
-      </a>
-    </li>
-
-
-
-    <li class="nav-item">
-      <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="">
-        <i class="bi bi-layout-text-window-reverse"></i><span>User</span><i
-          class="bi bi-chevron-down ms-auto"></i>
-      </a>
-      <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-        <li>
-          <a href="manage-user-account.html">
-            <i class="bi bi-circle"></i><span>Manage user accounts</span>
-          </a>
-        </li>
-        <li>
-          <a href="view-booking-history.html">
-            <i class="bi bi-circle"></i><span>View booking history</span>
-          </a>
-        </li>
-        
-
-
-
-      </ul>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link collapsed" data-bs-target="#tables-nav1" data-bs-toggle="collapse" href="#">
-        <i class="fa-solid fa-folder-user"></i><span>Staff</span><i
-          class="bi bi-chevron-down ms-auto"></i>
-      </a>
-      <ul id="tables-nav1" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-        <li>
-          <a href="manage_staff.html">
-            <i class="bi bi-circle"></i><span>Manage Staff</span>
-          </a>
-        </li>
-        <li>
-          <a href="manage_roll.html">
-            <i class="bi bi-circle"></i><span>Manage Rolls</span>
-          </a>
-        </li>
-       
-
-
-
-      </ul>
-    </li>
-
-
-    <li class="nav-item">
-      <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
-        <i class="fa-light fa-user" style="color: #0f2243;"></i><span>Booking Management</span><i
-          class="bi bi-chevron-down ms-auto"></i>
-      </a>
-      <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-        <li>
-          <a href="manage-booking.html">
-            <i class="bi bi-circle"></i><span>Manage bookings
-            </span>
-          </a>
-        </li>
-        <li>
-          <a href="cancle-or-modify.html">
-            <i class="bi bi-circle"></i><span>Cancel or modify bookings</span>
-          </a>
-        </li>
-
-      </ul>
-    </li>
-
-
-    <li class="nav-item">
-      <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-        <i class="fa-light fa-square-quarters fa-xl" style="color: #0f2243;"></i><span>Route Management
-        </span><i class="bi bi-chevron-down ms-auto"></i>
-      </a>
-      <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-        <li>
-          <a href="manage-bus-train.html">
-            <i class="bi bi-circle"></i><span>Manage bus/train routes
-            </span>
-          </a>
-        </li>
-
-        <li>
-          <a href="ManageScheduleforRouts.html">
-            <i class="bi bi-circle"></i><span>Manage schedules for routes</span>
-          </a>
-        </li>
-        <li>
-          <a href="Seat_Availability_Spacific.html">
-            <i class="bi bi-circle"></i><span>Seat availability on specific routes.</span>
-          </a>
-        </li>
-
-
-      </ul>
-    </li>
-
-
-
-
-
-
-    <li class="nav-item">
-      <a class="nav-link collapsed" data-bs-target="#icons-nav1" data-bs-toggle="collapse" href="#">
-        <i class="fa-sharp fa-light fa-circle-user fa-xl" style="color:#0f2243;"></i><span>
-          Fare Management </span><i class="bi bi-chevron-down ms-auto"></i>
-      </a>
-      <ul id="icons-nav1" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-        <li>
-          <a href="setTicketPrices.html">
-            <i class="bi bi-circle"></i><span>Set ticket prices</span>
-          </a>
-        </li>
-        <li>
-          <a href="ApplyDiscountorOffers.html">
-            <i class="bi bi-circle"></i><span>Apply discounts or offers</span>
-          </a>
-        </li>
-        <li>
-          <a href="ManageFareCategories.html">
-            <i class="bi bi-circle"></i><span>Manage Fare Categories (e.g., standard, premium)</span>
-          </a>
-        </li></ul>
-    </li>
- 
-
-  <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#icons-nav2" data-bs-toggle="collapse" href="#">
-      <i class="fa-light fa-envelope-open-dollar fa-xl" style="color: #0f2243;"></i><span class="me-1"
-        style="white-space: nowrap;">
-        Bus/Train Management </span><i class="bi bi-chevron-down ms-auto"></i>
-    </a>
-    <ul id="icons-nav2" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-      <li>
-        <a href="bus_trainBTM.html">
-          <i class="bi bi-circle"></i><span>Manage buses or trains</span>
-        </a>
-      </li>
-      <li>
-        <a href="manage_statusBTM.html">
-          <i class="bi bi-circle"></i><span>Track Bus/train status</span>
-        </a>
-      </li>
-      
-    </ul>
-  </li>
-
-  <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#icons-nav3" data-bs-toggle="collapse" href="#">
-      <i class="fa-sharp fa-light fa-money-check-dollar-pen fa-xl" style="color: #0f2243;"></i><span class="me-1"
-        style="white-space: nowrap;">
-
-        Payment Management</span><i class="bi bi-chevron-down ms-auto"></i>
-    </a>
-    <ul id="icons-nav3" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-      <li>
-        <a href="moniter_payment.html">
-          <i class="bi bi-circle"></i><span> Monitor payment transactions</span>
-        </a>
-      </li>
-      <li>
-        <a href="handle_refunds.html">
-          <i class="bi bi-circle"></i><span>Handle refunds or cancellations</span>
-        </a>
-      </li>
-      <li>
-        <a href="intregrate-with-paymentGatway.html">
-          <i class="bi bi-circle"></i><span>Integrate with payment gateways</span>
-        </a>
-      </li>
-    </ul>
-  </li>
-
-  <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#icons-nav4" data-bs-toggle="collapse" href="#">
-      <i class="fa-light fa-file-chart-column" style="color: #274a8b;"></i><span class="me-1"
-        style="white-space: nowrap;">
-
-      Reports</span><i class="bi bi-chevron-down ms-auto"></i>
-    </a>
-    <ul id="icons-nav4" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-      <li>
-        <a href="payment_report.html">
-          <i class="bi bi-circle"></i><span>Payment</span>
-        </a>
-      </li>
-      <li>
-        <a href="customer_report.html">
-          <i class="bi bi-circle"></i><span>Customer </span>
-        </a>
-      </li>
-      <li>
-        <a href="revanue_report.html">
-          <i class="bi bi-circle"></i><span>Revenue </span>
-        </a>
-      </li>
-      <li>
-        <a href="booking_report.html">
-          <i class="bi bi-circle"></i><span>Booking </span>
-        </a>
-      </li>
-
-    </ul>
-  </li>
-
-  <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#icons-nav5" data-bs-toggle="collapse" href="#">
-      <i class="fa-light fa-octagon-plus fa-xl" style="color: #224a91;"></i><span class="me-1"
-        style="white-space: nowrap;">
-
-        Notification Management</span><i class="bi bi-chevron-down ms-auto"></i>
-    </a>
-    <ul id="icons-nav5" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-      <li>
-        <a href="send_update_notification.html">
-          <i class="bi bi-circle"></i><span>Send updates to users</span>
-        </a>
-      </li>
-      <li>
-        <a href="Notification.html">
-          <i class="bi bi-circle"></i><span>Manage email and SMS notifications</span>
-        </a>
-      </li>
-
-    </ul>
-  </li>
-
-  
-  <li class="nav-item">
-    <a class="nav-link " href="generalsetting.html">
-      <i class="fa-solid fa-gear" style="color: #224a91;"></i>
-      <span>General Setting</span>
-    </a>
-  </li>
-
-
-
-
-  <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#icons-nav6" data-bs-toggle="collapse" href="#">
-      <i class="fa-light fa-rectangle-history-circle-plus fa-xl" style="color: #0f2243;"></i><span class="me-1"
-        style="white-space: nowrap;">
-
-
-        Feedback and Reviews</span><i class="bi bi-chevron-down ms-auto"></i>
-    </a>
-    <ul id="icons-nav6" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-      <li>
-        <a href="FeedBack&Review.html">
-          <i class="bi bi-circle"></i><span>Monitor User feedback and reviews</span>
-        </a>
-      </li>
-      <li>
-        <a href="ComplainorInquiries.html">
-          <i class="bi bi-circle"></i><span>Respond to user complaints or inquiries</span>
-        </a>
-      </li>
-      <li>
-        <a href="Implement.html">
-          <i class="bi bi-circle"></i><span>Implement improvements based on feedback</span>
-        </a>
-      </li>
-    </ul>
-  </li>
-
-  </ul>
-
-</aside>
 
 <!-- End Sidebar-->
 
@@ -568,39 +291,48 @@
   </div>
 
 
+<form action="{{('/moniter_payment_save')}}" method="post">
+@if(Session::has('success'))
+                                              <div class="alert alert-success">{{ Session::get('success') }}</div>
+                                              @endif
+                                              @if(Session::has('fail'))
+                                              <div class="alert alert-danger">{{ Session::get('fail') }}</div>
+                                              @endif
+                                              @csrf
+<div class="container-fluid c1 py-3 my-2">
 
-  <div class="container-fluid c1 py-3 my-2">
+
+<div class="row">
 
 
-      <div class="row">
+    <div class=" col-sm-4 col-md-4" style="line-height: 2rem;  ">
+        <label class="" for="specificSizeSelect">Transaction ID:</label>
+        <input type="text" name="transcation_ID" class="form-control" placeholder="Enter Your Transaction ID">
+    </div>
+ 
+  
+  <div class="col-sm-4 col-md-4" style="line-height: 2rem;  ">
 
+      <label class="" for="autoSizingInputGroup">Start Date:</label>
+      <input type="date" class="form-control" name="start_date" id="inputPassword " placeholder="">
 
-          <div class=" col-sm-4 col-md-4" style="line-height: 2rem;  ">
-              <label class="" for="specificSizeSelect">Transaction ID:</label>
-              <input type="text" class="form-control" placeholder="Enter Your Transaction ID">
-          </div>
-       
-        
-        <div class="col-sm-4 col-md-4" style="line-height: 2rem;  ">
-
-            <label class="" for="autoSizingInputGroup">Start Date:</label>
-            <input type="date" class="form-control" id="inputPassword " placeholder="">
-
-        </div>
-
-        <div class="col-sm-4 col-md-4" style="line-height: 2rem;  ">
-
-            <label class="" for="autoSizingInputGroup">End Date:</label>
-            <input type="date" class="form-control" id="inputPassword " placeholder="">
-
-        </div>
-      </div>
-
-      <div class="d-grid gap-2 d-md-flex justify-content-md-end me-4 mt-3">
-          <button class="btn btn-primary me-md-2 Btn_Save" type="button">ADD</button>
-        
-      </div>
   </div>
+
+  <div class="col-sm-4 col-md-4" style="line-height: 2rem;  ">
+
+      <label class="" for="autoSizingInputGroup">End Date:</label>
+      <input type="date" class="form-control" name="end_date" id="inputPassword " placeholder="">
+
+  </div>
+</div>
+
+<div class="d-grid gap-2 d-md-flex justify-content-md-end me-4 mt-3">
+    <button class="btn btn-primary me-md-2 Btn_Save" type="submit">ADD</button>
+  
+</div>
+</div>
+</form>
+  
 
    <!-- search bar start -->
    <div class="row mt-3 mb-3">
@@ -807,3 +539,4 @@
 </body>
 
 </html>
+@endsection

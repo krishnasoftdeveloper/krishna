@@ -293,7 +293,12 @@
     }
     ?>
     <form action="{{url('/savesetTicketPrices')}}" method="post">
-
+                                 @if(Session::has('success'))
+                                              <div class="alert alert-success">{{ Session::get('success') }}</div>
+                                              @endif
+                                              @if(Session::has('fail'))
+                                              <div class="alert alert-success">{{ Session::get('fail') }}</div>
+                                              @endif
       @csrf
     <div class="row">
     
@@ -362,9 +367,16 @@
     <!-- search bar end -->
     
     <div class="container-fluid c1  my-4 py-2">
+    @if(Session::has('danger'))
+                                              <div class="alert alert-danger">{{ Session::get('danger') }}</div>
+                                              @endif
+                                              @if(Session::has('fail'))
+                                              <div class="alert alert-danger">{{ Session::get('fail') }}</div>
+                                              @endif
         <div style="overflow: auto;">
             <table class="table table-hover">
                 <thead style="white-space: nowrap;">
+
                   <th> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th>
                     <th scope="col">Route:</th>
                     <th scope="col">Ticket Class:</th>
@@ -375,18 +387,20 @@
                     </tr>
                 </thead>
                 <tbody style="white-space: nowrap;">
+                @foreach($setTicketPrices as $u)
+
                     <tr>
                      
     
                       <th> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th>
-                        <td><span class="text-center">bus</span></td>
+                        <td><span class="text-center">{{$u->route}}</span></td>
     
     
-                        <td><span class="text-center">Indore
+                        <td><span class="text-center">{{$u->ticket_clas}}
                             </span></td>
                        
                             <td>
-                                <span class="text-center p-2">200</span>
+                                <span class="text-center p-2">{{$u->price}}</span>
                             </td>
                           
     
@@ -398,15 +412,17 @@
                                     aria-label="Example icon button with a menu icon">
                                     <i class="ri-eye-line"></i>
                                 </div>
-                                <div style="cursor: pointer;" class="edit_icon"
+                               <a href=""><div style="cursor: pointer;" class="edit_icon"
                                     aria-label="Example icon button with a menu icon">
                                     <i class="ri-pencil-line"></i>
                                 </div>
+                                </a>
     
-                                <div style="cursor: pointer;" class="delete_icon"
+                               <a href="{{url('/ticket_delete/')}}/{{$u->id}}"><div style="cursor: pointer;" class="delete_icon"
                                     aria-label="Example icon button with a menu icon">
                                     <i class="ri-delete-bin-6-line "></i>
                                 </div>
+                                </a>
                                 <div style="cursor: pointer;" class="print_icon"
                                     aria-label="Example icon button with a menu icon">
                                     <i class="ri-printer-fill"></i>
@@ -417,92 +433,10 @@
                         </td>
     
                     </tr>
-                    <tr>
-                     
+                    @endforeach
+                  
     
-                      <th> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th>
-                        <td><span class="text-center">bus</span></td>
-    
-    
-                        <td><span class="text-center">Indore
-                            </span></td>
-                       
-                            <td>
-                                <span class="text-center p-2">200</span>
-                            </td>
-                          
-    
-                        <td>
-                            <div class="parent_div ">
-    
-                                
-                                <div style="cursor: pointer;" class="view_icon"
-                                    aria-label="Example icon button with a menu icon">
-                                    <i class="ri-eye-line"></i>
-                                </div>
-                                <div style="cursor: pointer;" class="edit_icon"
-                                    aria-label="Example icon button with a menu icon">
-                                    <i class="ri-pencil-line"></i>
-                                </div>
-    
-                                <div style="cursor: pointer;" class="delete_icon"
-                                    aria-label="Example icon button with a menu icon">
-                                    <i class="ri-delete-bin-6-line "></i>
-                                </div>
-                                <div style="cursor: pointer;" class="print_icon"
-                                    aria-label="Example icon button with a menu icon">
-                                    <i class="ri-printer-fill"></i>
-                                </div>
-    
-                            </div>
-    
-                        </td>
-    
-                    </tr>
-    
-    
-                    <tr>
-                     
-    
-                      <th> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th>
-                        <td><span class="text-center">bus</span></td>
-    
-    
-                        <td><span class="text-center">Indore
-                            </span></td>
-                       
-                            <td>
-                                <span class="text-center p-2">200</span>
-                            </td>
-                          
-    
-                        <td>
-                            <div class="parent_div ">
-    
-                                
-                                <div style="cursor: pointer;" class="view_icon"
-                                    aria-label="Example icon button with a menu icon">
-                                    <i class="ri-eye-line"></i>
-                                </div>
-                                <div style="cursor: pointer;" class="edit_icon"
-                                    aria-label="Example icon button with a menu icon">
-                                    <i class="ri-pencil-line"></i>
-                                </div>
-    
-                                <div style="cursor: pointer;" class="delete_icon"
-                                    aria-label="Example icon button with a menu icon">
-                                    <i class="ri-delete-bin-6-line "></i>
-                                </div>
-                                <div style="cursor: pointer;" class="print_icon"
-                                    aria-label="Example icon button with a menu icon">
-                                    <i class="ri-printer-fill"></i>
-                                </div>
-    
-                            </div>
-    
-                        </td>
-    
-                    </tr>
+                   
     
                 </tbody>
             </table>
